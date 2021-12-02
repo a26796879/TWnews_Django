@@ -54,6 +54,32 @@ body {
     max-width: 100%;
   }
 }
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  font-size: 17px;
+}
+
+.container {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.container img {vertical-align: middle;}
+
+.container .content {
+  position: absolute;
+  bottom: 0;
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+}
 </style>
 <body>
 
@@ -65,10 +91,11 @@ body {
   <div class="row">
     <img src="https://img.ltn.com.tw/Upload/news/250/2021/11/24/157.jpg" style="width:100%">
   </div>-->
+  
 <div class="row">
   {% for img in img_list %}
     <div>
-      <img src="{{ img }}" style="width:100%">
+      <img src="{{ img.image }}" style="width:300px;height:200px">
     </div>
   {% endfor %}
 <!--
