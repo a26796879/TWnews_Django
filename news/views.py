@@ -14,13 +14,6 @@ headers = {
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36'
         }
-img_list = ["https://img.ltn.com.tw/Upload/news/300/2021/11/23/3745908_1_1.jpg",
-            "https://img.ltn.com.tw/Upload/news/250/2021/11/24/157.jpg",
-            "https://img.ltn.com.tw/Upload/news/300/2021/12/01/3754002_3_1.jpg",
-            "https://img.ltn.com.tw/Upload/talk/page/400S/2021/11/30/phpLjhRD9.jpg",
-            "https://img.ltn.com.tw/Upload/news/300/2021/11/30/phpi80GE8.jpg",
-            "https://news.ltn.com.tw/assets/images/default.png",
-            "https://img.ltn.com.tw/Upload/news/300/2021/11/28/3750944_1_1.jpg"]
 def get_ltn_news(keyword):
     url = 'https://search.ltn.com.tw/list?keyword=' + keyword
     res = requests.get(url=url,headers=headers)
@@ -38,19 +31,19 @@ def get_ltn_news(keyword):
         image = images[i].get('data-src')
         dateFormatter = "%Y/%m/%d %H:%M"
         published_date = datetime.strptime(publish, dateFormatter)
-        expect_time = datetime.today() - timedelta(hours=400)
+        expect_time = datetime.today() - timedelta(hours=40)
         if published_date >= expect_time:
             results.append({
-            'title':title,
-            'url':url,
-            'publisher':publisher,
-            'published_date':published_date,
-            'image':image
+                'title':title,
+                'url':url,
+                'publisher':publisher,
+                'published_date':published_date,
+                'image':image
             })
         else:
             break
     return results
 def index(request):
     return render(request, 'index.html',{
-        'img_list':get_ltn_news('基進'),
+        'img_list':get_ltn_news('台灣'),
     })
