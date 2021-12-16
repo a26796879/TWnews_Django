@@ -51,7 +51,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'TWnews_combine.urls'
-
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'templates/static'),
+]
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
